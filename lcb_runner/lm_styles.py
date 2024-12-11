@@ -34,6 +34,8 @@ class LMStyle(Enum):
     DracarysLlama = "DracarysLlama"
     DracarysQwen = "DracarysQwen"
 
+    QwQ = "QwQ"
+
 
 @dataclass
 class LanguageModel:
@@ -705,6 +707,13 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.DracarysQwen,
         datetime(2023, 1, 1),
         link="https://huggingface.co/abacusai/Dracarys-72B-Instruct",
+    ),
+    LanguageModel(
+        "Qwen/QwQ-32B-Preview",
+        "QwQ-32B-Preview",
+        LMStyle.QwQ,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/Qwen/QwQ-32B-Preview",
     ),
 ]
 

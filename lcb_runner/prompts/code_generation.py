@@ -398,6 +398,25 @@ def format_prompt_generation(
             padding=False,
         )
 
+    if LanguageModelStyle == LMStyle.QwQ:
+        chat_messages = [
+            {
+                "role": "user",
+                "content": get_generic_question_template_answer(question),
+            },
+        ]
+        from transformers import AutoTokenizer
+
+        tokenizer = AutoTokenizer.from_pretrained("Qwen/QwQ-32B-Preview", padding_side="right", use_fast=False)
+        return tokenizer.apply_chat_template(
+            chat_messages,
+            tokenize=False,
+            add_generation_prompt=True,
+            truncation=False,
+            padding=False,
+        )
+
+
     raise NotImplementedError(
         f"LanguageModelStyle {LanguageModelStyle} not implemented"
     )

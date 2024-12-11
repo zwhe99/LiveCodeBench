@@ -177,6 +177,17 @@ def format_prompt_execution_base(
         )
     elif LanguageModelStyle == LMStyle.DracarysQwen:
         return prompt
+    elif LanguageModelStyle == LMStyle.QwQ:
+        chat_messages = [{"role": "user", "content": prompt}]
+
+        tokenizer = AutoTokenizer.from_pretrained("Qwen/QwQ-32B-Preview", padding_side="right", use_fast=False)
+        return tokenizer.apply_chat_template(
+            chat_messages,
+            tokenize=False,
+            add_generation_prompt=True,
+            truncation=False,
+            padding=False,
+        )
     else:
         raise NotImplementedError(
             f"LanguageModelStyle {LanguageModelStyle} not implemented"
