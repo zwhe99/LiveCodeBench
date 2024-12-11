@@ -402,7 +402,9 @@ def format_prompt_generation(
         chat_messages = [
             {
                 "role": "user",
-                "content": get_generic_question_template_answer(question),
+                "content": PromptConstants.SYSTEM_MESSAGE_GENERIC
+                + "\n\n"
+                + get_generic_question_template_answer(question),
             },
         ]
         from transformers import AutoTokenizer
